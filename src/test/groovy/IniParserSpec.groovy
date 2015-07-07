@@ -18,4 +18,13 @@ class IniParserSpec extends spock.lang.Specification {
     then:
     config.size() == 2
   }
+
+  def "Check that multi-valued entries are arrays"() {
+    when:
+    def config = ini.getConfig('top', 'key1')
+    then:
+    config.size() == 2
+    config[0] == "value"
+  }
 }
+
