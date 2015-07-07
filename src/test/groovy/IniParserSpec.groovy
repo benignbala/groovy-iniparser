@@ -17,4 +17,5 @@ class IniParserSpec extends spock.lang.Specification {
     def config = ini.getAllSections()
     then:
     config.size() == 2
-    
+  }
+}
