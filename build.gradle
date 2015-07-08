@@ -7,6 +7,7 @@ apply plugin: 'application'
 
 mainClassName = 'org.benignbala.iniparser.Main'
 
+
 repositories {
   mavenCentral()
 }
@@ -33,5 +34,27 @@ jar {
       "Main-Class": "org.benignbala.iniparser.Main",
       "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
     )
+  }
+}
+
+bintray {
+  user = "benignbala"
+  key = BINTRAY_API_KEY
+  publish = true
+  filesSpec {
+    from 'build/libs'
+    into 'benignbala/groovy-iniparser'
+  }
+  pkg {
+    repo = "maven"
+    name = "groovy-iniparser"
+    desc = "An INI config file parser implemented in Groovy"
+    licenses = ["Apache-2.0"]
+    vcsUrl = "https://github.com/benignbala/groovy-iniparser.git"
+    publicDownloadNumbers = true
+    version {
+      name = '0.1-alpha'
+      desc = 'First release of the groovy-iniparser plugin'
+    }
   }
 }
